@@ -1,0 +1,3 @@
+#include "rocprofiler_sdk_wrapper.h"
+#include <rocprofiler-sdk/registration.h>
+#include <rocprofiler-sdk/rocprofiler.h>

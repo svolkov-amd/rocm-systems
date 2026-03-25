@@ -69,9 +69,7 @@ for the agent and returns a pointer to it.
 */
 
 #include "helper.hpp"
-
-#include <rocprofiler-sdk/registration.h>
-#include <rocprofiler-sdk/rocprofiler.h>
+#include "rocprofiler_sdk_wrapper.h"
 
 #include <fstream>
 #include <iostream>

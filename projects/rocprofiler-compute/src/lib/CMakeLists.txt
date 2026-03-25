@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.28)
 # Minimum required c++ standard is 17 for compilation
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,6 +13,12 @@ find_package(
     REQUIRED
 )
 
-add_library(rocprofiler-compute-tool SHARED)
-target_sources(rocprofiler-compute-tool PRIVATE rocprofiler_compute_tool.cpp helper.cpp)
+add_library(rocprofiler-compute-tool SHARED
+    rocprofiler_compute_tool.cpp
+    helper.hpp
+    helper.cpp
+    rocprofiler_sdk_wrapper.h
+    rocprofiler_sdk_wrapper.cpp
+)
+
 target_link_libraries(rocprofiler-compute-tool PRIVATE rocprofiler-sdk::rocprofiler-sdk)
