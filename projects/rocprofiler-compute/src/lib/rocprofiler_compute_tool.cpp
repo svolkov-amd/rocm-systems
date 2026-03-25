@@ -20,54 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-/*
-This is a native tool for rocprofiler-compute to collect counters data for GPU
-kernel dispatches using the rocprofiler-sdk public API. This C++ tool is
-compiled into a shared object with hipcc/amdclang++ and dynamically links to the
-rocprofiler-sdk library. The shared object is injected using the LD_PRELOAD
-environment variable so that rocprofiler-sdk services can be configured before
-the GPU workload starts executing.
-
-An experimental feature for attach/detach scenarios is also provided.
-
-Code Flow:
-
-1. Entry point - rocprofiler_configure():
-    - Parses ROCPROF environment variables to configure profiling.
-    - Sets up tool metadata and logging.
-    - Returns pointers to tool_init() and tool_fini() functions.
-
-2. Tool Initialization - tool_init():
-    - Creates a profiling context.
-    - Subscribes to dispatch tracing and counting services by providing function
-callbacks.
-    - Starts the profiling context.
-
-3. Kernel registration callback - tool_tracing_callback():
-    - Invoked when a kernel is registered.
-    - Stores the kernel name to kernel id mapping.
-    - Determines which kernel names/ids to target for profiling based on ROCPROF
-environment variables.
-
-4. Kernel dispatch callback - dispatch_callback():
-    - Invoked before a kernel dispatch is enqueued.
-    - Decides whether to profile this dispatch.
-    - If profiling is required, creates or fetches from cache a counter profile
-for the agent and returns a pointer to it.
-    - The counter profile dictates which counters to collect for this dispatch.
-
-5. Kernel dispatch record callback - record_callback():
-    - Invoked after a kernel dispatch is completed.
-    - Receives the collected counter records.
-    - Stores the counter records in tool data for later processing.
-
-6. Tool Finalization - tool_fini():
-    - Called when the application is terminating.
-    - Stops the profiling context.
-    - Processes and writes the collected counter records to the output file.
-    - Cleans up resources.
-*/
-
 #include "helper.hpp"
 #include "sdk_wrapper.h"
 
@@ -100,7 +52,6 @@ for the agent and returns a pointer to it.
 
 namespace {
 
-// Multiplexing modes enum
 enum class iteration_multiplexing_mode_t { DISABLED, SIMPLE, KERNEL, LAUNCH };
 
 // Kernel dispatch info struct for iteration multiplexing
