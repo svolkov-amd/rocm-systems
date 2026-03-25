@@ -26,6 +26,6 @@ add_library(rocprofiler-compute-tool SHARED
     sdk_wrapper.cpp
 )
 
-# target_link_libraries(rocprofiler-compute-tool PRIVATE rocprofiler-sdk::rocprofiler-sdk)
+target_link_libraries(rocprofiler-compute-tool PRIVATE rocprofiler-sdk::rocprofiler-sdk)
 add_subdirectory(external)
 add_subdirectory(test)
