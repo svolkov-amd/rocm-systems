@@ -22,8 +22,8 @@ add_library(rocprofiler-compute-tool SHARED
     rocprofiler_compute_tool.cpp
     helper.hpp
     helper.cpp
-    rocprofiler_sdk_wrapper.h
-    rocprofiler_sdk_wrapper.cpp
+    sdk_wrapper.h
+    sdk_wrapper.cpp
 )
 
 target_link_libraries(rocprofiler-compute-tool PRIVATE rocprofiler-sdk::rocprofiler-sdk)
