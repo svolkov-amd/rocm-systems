@@ -10,7 +10,8 @@ protected:
 
 TEST_F(TestRocprofilerComputeTool, TestExample)
 {
-    EXPECT_EQ(1 + 1, 2);
+    rocprofiler_client_id_t client_id{};
+    rocprofiler_configure(1, "", 1, &client_id);
 } 
 
 int main(int argc, char** argv)

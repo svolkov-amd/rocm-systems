@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include "helper.hpp"
+#include "input_parameters.h"
 #include "sdk_wrapper.h"
 
 #include <unistd.h>
@@ -35,6 +36,10 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+
+using namespace rocprof_compute_tool;
+
+EnvInputParameters g_input_parameters;
 
 #define ROCPROFILER_CALL(result, msg)                                                                  \
     {                                                                                                  \

@@ -4,6 +4,8 @@ add_library(${target} SHARED
     rocprofiler_compute_tool.cpp
     helper.hpp
     helper.cpp
+    input_parameters.h
+    input_parameters.cpp
     sdk_wrapper.h
     sdk_wrapper.cpp
 )
