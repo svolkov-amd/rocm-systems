@@ -51,10 +51,8 @@ BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
 BreakStringLiterals: true
 ColumnLimit: 200
-# CommentPragmas:
 CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
-# ConstructorInitializerIndentWidth: 4 # default value
 ContinuationIndentWidth: 4
 Cpp11BracedListStyle: true
 DeriveLineEnding: true
@@ -64,8 +62,6 @@ IncludeBlocks: Regroup
 IncludeCategories:
     - Regex:    '\"stdafx\.h\"' # precompiled header
       Priority: -1              # always first
-    - Regex:    '^.(gtest|gmock|nowide|json|boost|(Q[A-Z][A-z0-9]+)|rapidjson|optionparser\.h|fmt|pybind11|Python\.h)' # known 3rdparty
-      Priority: 3
     - Regex:    '^<[a-z_]+>' # STD headers
       Priority: 4
     - Regex:    '^<.*>' # all other-projects headers
@@ -108,8 +104,6 @@ SpacesInParentheses: false
 SpacesInSquareBrackets: false
 TabWidth: 4
 UseTab: Never
-# UseCRLF:
-WhitespaceSensitiveMacros: ['Q_PROPERTY']
 
 PenaltyExcessCharacter: 3
 PenaltyBreakAssignment: 100
