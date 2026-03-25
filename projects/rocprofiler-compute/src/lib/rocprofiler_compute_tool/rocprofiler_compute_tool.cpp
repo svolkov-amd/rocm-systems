@@ -613,7 +613,7 @@ std::unique_ptr<tool_data_t> create_tool_data(rocprofiler_client_id_t* /*id*/)
 
     // Require ROCPROF_OUTPUT_PATH to be set, otherwise error out
     std::string filename;
-    const char* output_path = getenv("ROCPROF_OUTPUT_PATH");
+    const char* output_path = g_input_parameters.get_output_path();
     if (!output_path || !*output_path)
     {
         throw std::runtime_error("ROCPROF_OUTPUT_PATH environment variable must be set");
@@ -629,20 +629,20 @@ std::unique_ptr<tool_data_t> create_tool_data(rocprofiler_client_id_t* /*id*/)
     // Store ROCPROF env. vars. in tool_data
 
     // ROCPROF_COUNTERS env. var. is a string like "pmc: counter1 counter2 ..."
-    if (const char* v = getenv("ROCPROF_COUNTERS"))
+    if (const char* v = g_input_parameters.get_requested_counters())
         tool_data->requested_counters = v;
 
-    if (const char* v = getenv("ROCPROF_ITERATION_MULTIPLEXING"))
+    if (const char* v = g_input_parameters.get_iteration_multiplexing_mode())
         tool_data->iteration_multiplexing_mode = iteration_multiplexing_mode(v);
 
     // ROCPROF_KERNEL_FILTER_INCLUDE_REGEX env. var. is a regex string like
     // kernel_name_1|kernel_name_2|... Used to collect counters only for kernels
     // with names matching the regex
-    if (const char* v = getenv("ROCPROF_KERNEL_FILTER_INCLUDE_REGEX"))
+    if (const char* v = g_input_parameters.get_kernel_filter_include_regex())
         tool_data->kernel_filter_include_regex = v;
 
     // ROCPROF_KERNEL_FILTER_RANGE env. var. is a string like "[4,7-9,...]"
-    if (const char* v = getenv("ROCPROF_KERNEL_FILTER_RANGE"))
+    if (const char* v = g_input_parameters.get_kernel_filter_range())
     {
         // Remove square brackets at the ends if present
         std::string v_str = v;

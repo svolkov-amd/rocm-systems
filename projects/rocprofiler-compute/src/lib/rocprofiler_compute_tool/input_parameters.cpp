@@ -13,7 +13,7 @@ char* EnvInputParameters::get_requested_counters()
     return getenv("ROCPROF_COUNTERS");
 }
 
-char* EnvInputParameters::get_iteration_multiplexing()
+char* EnvInputParameters::get_iteration_multiplexing_mode()
 {
     return getenv("ROCPROF_ITERATION_MULTIPLEXING");
 }
