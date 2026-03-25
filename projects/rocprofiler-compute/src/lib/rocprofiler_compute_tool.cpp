@@ -140,9 +140,6 @@ rocprofiler_context_id_t& get_client_ctx()
 
 iteration_multiplexing_mode_t iteration_multiplexing_mode(const std::string& mode)
 {
-    // if (mode == "simple")
-    //   return iteration_multiplexing_mode_t::SIMPLE;
-    // else
     if (mode == "kernel")
         return iteration_multiplexing_mode_t::KERNEL;
     else if (mode == "kernel_launch_params")
