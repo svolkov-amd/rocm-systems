@@ -18,17 +18,5 @@ find_package(
     REQUIRED
 )
 
-set(target rocprofiler-compute-tool)
-add_library(${target} SHARED
-    rocprofiler_compute_tool.cpp
-    helper.hpp
-    helper.cpp
-    sdk_wrapper.h
-    sdk_wrapper.cpp
-)
-
-target_include_directories(${target} PUBLIC .)
-target_link_libraries(${target} PUBLIC rocprofiler-sdk::rocprofiler-sdk)
-
 add_subdirectory(external)
-add_subdirectory(test)
+add_subdirectory(rocprofiler_compute_tool)
